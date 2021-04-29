@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-52h@6t784x@b96ti0++ffdam%clic)wrh7*=k!%q*c%iy)ae*e
 DEBUG = True
 
 ALLOWED_HOSTS = []
+STATIC_URL='/static/'
+STATIC_ROOT= os.path.joi(BASE_DIR,'static')
 
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'static,'media)
 
 # Application definition
 
@@ -77,8 +81,12 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': storedb',
+        'USER':'root',
+        'PASSWORD':'',
+        'HOST':'localhost',
+        'PORT':''
     }
 }
 
