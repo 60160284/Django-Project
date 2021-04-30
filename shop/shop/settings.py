@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 STATIC_URL='/static/'
-STATIC_ROOT= os.path.joi(BASE_DIR,'static')
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 
 MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'static,'media)
+MEDIA_ROOT=os.path.join(BASE_DIR,'staic','media')
 
 # Application definition
 
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': storedb',
+        'NAME': 'storedb',
         'USER':'root',
         'PASSWORD':'',
         'HOST':'localhost',
@@ -127,7 +127,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -136,9 +136,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = (
-     os.path.join(BASE_DIR, 'static'),
+     os.path.join(BASE_DIR, 'style'),
 )
 # Sass/SCSS
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'style')
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
