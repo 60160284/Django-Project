@@ -137,8 +137,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-     os.path.join(BASE_DIR, 'static'),
+     os.path.join(BASE_DIR, 'style'),
 )
 # Sass/SCSS
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'style')
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
