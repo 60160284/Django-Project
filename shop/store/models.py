@@ -4,9 +4,15 @@ from django.db import models
 class Category(models.Model):
     name=models.CharField(max_length=255,unique=True)
     slug=models.SlugField(max_length=255,unique=True)
-      
+
     def __str__(self):
         return self.name
+
+    
+    class Meta :
+        ordering=('name',)
+        verbose_name ='หมวดหมู่'
+        verbose_name_plural = "ข้อมูลหมวดหมู่"
 
 class Typefile(models.Model):
     name=models.CharField(max_length=255,unique=True)
@@ -15,6 +21,11 @@ class Typefile(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta :
+        ordering=('name',)
+        verbose_name ='รูปแบบ'
+        verbose_name_plural = "ข้อมูลรูปแบบ"
+
 class Published(models.Model):
     name=models.CharField(max_length=255,unique=True)
     slug=models.SlugField(max_length=255,unique=True)
@@ -22,7 +33,10 @@ class Published(models.Model):
     def __str__(self):
         return self.name
 
-
+    class Meta :
+        ordering=('name',)
+        verbose_name ='การเผยแพร่'
+        verbose_name_plural = "ข้อมูลการเผยแพร่"
 
 
 
@@ -44,3 +58,8 @@ class Product(models.Model):
          
     def __str__(self):
         return self.name
+
+    class Meta :
+        ordering=('name',)
+        verbose_name='สินค้า'
+        verbose_name_plural="ข้อมูลสินค้า"
