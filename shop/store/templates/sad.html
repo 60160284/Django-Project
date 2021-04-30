@@ -1,0 +1,43 @@
+<section class="section bg">
+    <div class="container">
+        {% for product in products %}
+        <div class="columns home-sdy">
+            <div class="column">
+                <div class="card">
+                    <div class="card-image">
+                        <a href="">
+                            <figure class="image is-3by2">
+                                <img src="{{product.image.url}}" alt="Placeholder image">
+                            </figure>
+                        </a>
+                    </div>
+                    <div class="card-content home-sdy">
+                        <div class="media">
+                            <div class="media-content">
+                                <a href="{{product.get_url}}">{{product.name}}</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+</section>
+
+
+<section class="section bg">
+    <div class="container">
+        {% for product in products %}
+        <div class="columns">
+            <div class="column">
+                <a href="{{product.get_url}}">{{product.name}}</a>
+            </div>
+ 
+          </div>
+            
+        
+        {% endfor %}
+    </div>
+</section>

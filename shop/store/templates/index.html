@@ -1,6 +1,41 @@
 {% extends 'layout.html' %}
-
+{% load 'static %'}
 {% block content %}
 
-<h2>Hello </h2>
+<section class="section bg">
+    <div class="container">
+        {% for product in products %}
+        <div class="columns home-sdy">
+            <div class="column">
+                <div class="card" style="height: 300px; width: 250px;">
+                    <div class="card-image">
+                      <figure class="image" >
+                        <img src="{{product.image.url}}" alt="Placeholder image">
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <div class="media">
+                     
+                        <div class="media-content">
+                            <a href="{{product.get_url}}">{{product.name}}</a>
+                        </div>
+                      </div>
+                  
+                     
+                    </div>
+                  </div>
+                
+                </div>
+            </div>
+            
+        
+        {% endfor %}
+    </div>
+</section>
+
+<!-- <p>{{product.name}}</p> -->
+<!-- <img src="{{product.image.url}}" alt=""> -->
+
+
+
 {% endblock %}
