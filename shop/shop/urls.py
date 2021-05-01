@@ -24,9 +24,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index),
+    path('', views.index,name ="home"),
     path('product/', views.product),
-    
+    path('category/<slug:category_slug>',views.index,name="product_by_category"),
     #path('account/login',views.signInView, name="signUp")
     
 ]
