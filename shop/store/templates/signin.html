@@ -1,0 +1,62 @@
+
+{% extends 'layout.html' %}
+{% load 'static %'}
+{% block content %}
+
+<section class="section bg">
+    <div class="container">
+       
+        <div class="column">
+            <p class="title">
+                เข้าสู่ระบบ
+            </p>
+     
+                <div class="columns is-centered Sdy">
+                  
+                    <div class="columns is-half">
+                        <form action="" class="">
+                            <div class="field">
+                                <label for="" class="label">อีเมล</label>
+                                <div class="control">
+                                    <input type="email" placeholder="Hello@gmail.com" class="input Sdy" required>
+            
+                                </div>
+                            </div>
+            
+                            <div class="field">
+                                <label for="" class="label">รหัสผ่าน</label>
+                                <div class="control">
+                                    <input type="password" placeholder="*******" class="input Sdy" required>
+            
+                                    <a href="../Forget-password/index-forgot-pass.html">
+                                        <p class="">ลืมรหัสผ่าน</p>
+                                    </a>
+                                </div>
+            
+                            </div>
+                            <div class="field">
+                                <label for="" class="checkbox">
+                                    <input type="checkbox">
+                                    ให้ฉันอยู่ในระบบ
+                                </label>
+            
+                                <a href="{% url 'signUp' %}"><label
+                                        class="naccount">สร้างบัญชีใหม่</label></a>
+                            </div>
+            
+                            <div class="field">
+                                <a class="button Sdy" href="../Home/index-home.html">
+                                    ยืนยัน
+                                </a>
+                            </div>
+                        </form>
+            
+                    </div>
+                </div>
+            </div>
+            
+   
+      
+    </div>
+</section>
+{% endblock %}

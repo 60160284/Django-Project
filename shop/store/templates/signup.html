@@ -1,46 +1,77 @@
-<div class="container Sdy">
-    <p class="title">
-        เข้าสู่ระบบ
-    </p>
-    <div class="columns is-centered Sdy">
-        <div class="columns is-half">
-            <form action="" class="">
-                <div class="field">
-                    <label for="" class="label">อีเมล</label>
-                    <div class="control">
-                        <input type="email" placeholder="Hello@gmail.com" class="input Sdy" required>
 
-                    </div>
+{% extends 'layout.html' %}
+{% load 'static %'}
+{% block content %}
+
+<section class="section bg">
+ 
+        <div class="container">
+            <div class="column">
+                <p class="title">
+                    สร้างบัญชีใหม่
+                </p>
+            <div class="columns is-centered Sdy">
+                <div class="columns">
+                    <form action="" class="form">
+                      <div class="columns is-mobile">   <!-- ทำให้เป็น 2 column -->
+                            <div class="column">
+                                <div class="field">
+                                    <label for="" class="label">ชื่อ</label>
+                                    <div class="control">
+                                        <input type="text" placeholder="" class="input Sdy" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label for="" class="label">นามสกุล</label>
+                                    <div class="control">
+                                        <input type="text" placeholder="" class="input Sdy" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="" class="label">อีเมล</label>
+                            <div class="control">
+                                <input type="email" placeholder="Hello@gmail.com" class="input Sdy" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="password" class="label">รหัสผ่าน</label>
+
+                            <div class="control">
+                                <input type="password" placeholder="********" class="input Sdy" name="password">
+                                <label data-success="" data-error=""></label>
+                            </div>
+                        </div>
+
+
+                        <div class="field">
+                            <label for="" class="checkbox">
+                                <input type="checkbox">
+                                ฉันยอมรับข้อตกลงและเงื่อนไข
+                            </label>
+                            <div class="">
+                                <p class="">ศึกษารายละเอียดเพิ่มเติม<br><a href="#" class="">ข้อกำหนดของบริการ</a>
+                                    และ <a href="#" class="frm__link">นโยบายความเป็นส่วนตัว</a></p>
+                            </div>
+
+                        </div>
+                        <div class="field">
+                            <button class="button Sdy">
+                                ยืนยัน
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="field">
-                    <label for="" class="label">รหัสผ่าน</label>
-                    <div class="control">
-                        <input type="password" placeholder="*******" class="input Sdy" required>
-
-                        <a href="../Forget-password/index-forgot-pass.html">
-                            <p class="">ลืมรหัสผ่าน</p>
-                        </a>
-                    </div>
-
-                </div>
-                <div class="field">
-                    <label for="" class="checkbox">
-                        <input type="checkbox">
-                        ให้ฉันอยู่ในระบบ
-                    </label>
-
-                    <a href="./../Create-Account/index-create-account.html"><label
-                            class="naccount">สร้างบัญชีใหม่</label></a>
-                </div>
-
-                <div class="field">
-                    <a class="button Sdy" href="../Home/index-home.html">
-                        ยืนยัน
-                    </a>
-                </div>
-            </form>
-
+            </div>
         </div>
-    </div>
-</div>
+            
+   
+      
+   
+</section>
+{% endblock %}

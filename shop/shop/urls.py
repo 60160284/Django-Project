@@ -27,7 +27,8 @@ urlpatterns = [
     path('', views.index,name ="home"),
     path('product/', views.product),
     path('category/<slug:category_slug>',views.index,name="product_by_category"),
-    #path('account/login',views.signInView, name="signUp")
+    path('account/create',views.signupView, name="signUp"),
+    path('account/login',views.signinView, name="signIn"),
     
 ]
 

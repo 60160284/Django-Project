@@ -17,3 +17,10 @@ def index(request, category_slug=None):
 
 def product(request):
    return render(request,'product.html')
+
+
+def signupView(request):
+    return render(request,'signup.html')
+
+def signinView(request):
+    return render(request,'signin.html')
