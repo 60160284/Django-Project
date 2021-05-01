@@ -1,11 +1,12 @@
 {% extends 'layout.html' %}
+
 {% load 'static %'}
 {% block content %}
 
+{% include 'filter.html' %}
 <section class="section bg">
+    
     <div class="container">
-
-
         <div class="columns is-multiline is-mobile">
             {% for product in products %}
             <div class="column is-one-quarter">

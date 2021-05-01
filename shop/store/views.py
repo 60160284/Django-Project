@@ -15,6 +15,7 @@ def index(request, category_slug=None):
     
     return render(request,'index.html',{'products':products,'category':category_page})
 
+
 def product(request):
    return render(request,'product.html')
 

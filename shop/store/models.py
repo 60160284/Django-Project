@@ -30,6 +30,10 @@ class Typefile(models.Model):
         verbose_name ='รูปแบบ'
         verbose_name_plural = "ข้อมูลรูปแบบ"
 
+
+    def get_url(self):
+        return reverse('product_by_typefile',args=[self.slug])
+
 class Published(models.Model):
     name=models.CharField(max_length=255,unique=True)
     slug=models.SlugField(max_length=255,unique=True)

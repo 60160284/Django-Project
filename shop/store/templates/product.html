@@ -1,5 +1,57 @@
 {% extends 'layout.html' %}
-
+{% load 'static %'}
 {% block content%}
-    <h1>Hello Product</h1>
+<section class="hero ">
+    <div class="hero-body">
+
+
+        <div class="columns">
+            <div class="column is-8 is-offset-2 ">
+                <figure class="image is-16by9 ">
+                    <img src="" alt="">
+                </figure>
+            </div>
+
+        </div>
+</section>
+
+<section class="section bg">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                  <a class="navbar-item">
+                    <p class="title">แมวสีส้มน่ารัก</p>
+                  </a>
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <div class="buttons">
+                      <a class="button is-info is-inverted">
+                        <i class="fa fa-download item-down"></i> <strong>ดาวน์โหลด</strong>
+                      </a>
+                      
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="content is-medium item-sdy" style="padding-top: 2rem;">
+                <p>“ความลับของแมวส้ม”
+                    แมวส้มประจำบ้านของใครหลายๆ คน หากจะกล่าวว่าแมวส้มเป็นแมวประจำถิ่นของประเทศไทยก็คงจะไม่ผิดนัก
+                    วันนี้เราจะพาคุณผู้อ่านมาทำความรู้จักกับแมวส้มกันว่าพวกเขานั้นมีที่มาที่ไป
+                    อย่างไร แล้วพวกเขามีความเหมือนที่แตกต่างกันอย่างไรบ้าง </p>
+
+                <p class="tags">Tags: #cat #orange </p>
+            </div>
+
+            <div class="columns">
+                <div class="column">มีนาคม 27, 2564</div>
+                <div class="column">สัตว์</div>
+                <div class="column">โมเดล 3 มิติ</div>
+                <div class="column">CC-BY-ND</div>
+            </div>
+        </div>
+</section>
+
 {% endblock %}

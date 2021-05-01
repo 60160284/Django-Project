@@ -27,6 +27,8 @@ urlpatterns = [
     path('', views.index,name ="home"),
     path('product/', views.product),
     path('category/<slug:category_slug>',views.index,name="product_by_category"),
+    path('typefile/<slug:typefile_slug>',views.index,name="product_by_typefile"),
+    
     path('account/create',views.signupView, name="signUp"),
     path('account/login',views.signinView, name="signIn"),
     
