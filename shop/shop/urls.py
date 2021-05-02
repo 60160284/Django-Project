@@ -25,11 +25,12 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index,name ="home"),
-    path('product/', views.product),
+    #path('product/', views.product),
     path('category/<slug:category_slug>',views.index,name="product_by_category"),
     path('typefile/<slug:typefile_slug>',views.index,name="product_by_typefile"),
     path('published/<slug:published_slug>',views.index,name="product_by_published"),
 
+      path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
     
     path('account/create',views.signupView, name="signUp"),
     path('account/login',views.signinView, name="signIn"),
