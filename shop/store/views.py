@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from store.models import Category, Product,Typefile,Published
 #from django.http import HttpResponse
 # Create your views here.
-
+from django.http import FileResponse
 
 
 def index(request, category_slug=None):
@@ -28,9 +28,10 @@ def productPage(request, category_slug, product_slug):
     return render(request,'product.html',{'product':product})
 
 
-
 def signupView(request):
     return render(request,'signup.html')
 
 def signinView(request):
     return render(request,'signin.html')
+
+

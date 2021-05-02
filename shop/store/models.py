@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.http import FileResponse
 
 # Create your models here.
 class Category(models.Model):
@@ -76,3 +77,4 @@ class Product(models.Model):
 
     def get_url(self):
         return reverse('productDetail',args=[self.category.slug,self.slug])
+

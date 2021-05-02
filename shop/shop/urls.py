@@ -30,7 +30,7 @@ urlpatterns = [
     path('typefile/<slug:typefile_slug>',views.index,name="product_by_typefile"),
     path('published/<slug:published_slug>',views.index,name="product_by_published"),
 
-      path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
+    path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
     
     path('account/create',views.signupView, name="signUp"),
     path('account/login',views.signinView, name="signIn"),
