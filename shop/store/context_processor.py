@@ -8,5 +8,3 @@ def menu_links(request):
 def typefile_links(request):
     tlinks=Typefile.objects.all()
     return dict(tlinks=tlinks)
-
-วันนนี้
