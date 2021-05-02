@@ -26,30 +26,12 @@
     <div class="columns section">
         <div class="column">
             <span>การเปิดเผย</span>
-            <div class="column checkbox">
-                <input type="checkbox" name="" data-filter="" data-filter-value="" />
-                <label>CC0</label>
+            {% for published in plinks %}
+            <div class="column ">
+                <input type="checkbox" name="" value="{{published.get_url}}" />
+                <label>{{published.name}}</label>
             </div>
-            <div class="column checkbox">
-                <input type="checkbox" name="" data-filter="" data-filter-value="" />
-                <label>CC-BY</label>
-            </div>
-            <div class="column checkbox">
-                <input type="checkbox" name="" data-filter="" data-filter-value="" />
-                <label>CC-BY-SA</label>
-            </div>
-            <div class="column checkbox">
-                <input type="checkbox" name="" data-filter="" data-filter-value="" />
-                <label>CC-BY-ND</label>
-            </div>
-            <div class="column checkbox">
-                <input type="checkbox" name="" data-filter="" data-filter-value="" />
-                <label>CC-BY-NC-SA</label>
-            </div>
-            <div class="column checkbox">
-                <input type="checkbox" name="" data-filter="" data-filter-value="" />
-                <label>CC-BY-NC-ND</label>
-            </div>
+            {% endfor %}
         </div>
 
 

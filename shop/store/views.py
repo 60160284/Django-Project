@@ -3,6 +3,8 @@ from store.models import Category, Product,Typefile,Published
 #from django.http import HttpResponse
 # Create your views here.
 
+
+
 def index(request, category_slug=None):
     products = None
     category_page=None

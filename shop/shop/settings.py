@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
-    'sass_processor'
+    'sass_processor',
+   
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'store.context_processor.menu_links',
                 'store.context_processor.typefile_links',
+                'store.context_processor.published_links',
             ],
         },
     },

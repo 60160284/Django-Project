@@ -28,6 +28,8 @@ urlpatterns = [
     path('product/', views.product),
     path('category/<slug:category_slug>',views.index,name="product_by_category"),
     path('typefile/<slug:typefile_slug>',views.index,name="product_by_typefile"),
+    path('published/<slug:published_slug>',views.index,name="product_by_published"),
+
     
     path('account/create',views.signupView, name="signUp"),
     path('account/login',views.signinView, name="signIn"),

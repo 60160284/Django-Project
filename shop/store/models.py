@@ -46,7 +46,8 @@ class Published(models.Model):
         verbose_name ='การเผยแพร่'
         verbose_name_plural = "ข้อมูลการเผยแพร่"
 
-
+    def get_url(self):
+        return reverse('product_by_published',args=[self.slug])
 
 class Product(models.Model):
     name=models.CharField(max_length=255,unique=True)
