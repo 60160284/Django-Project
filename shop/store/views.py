@@ -6,7 +6,7 @@ from django.http import FileResponse
 from store.forms import SignUpForm 
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login , authenticate
+from django.contrib.auth import login , authenticate,logout
 
 
 def index(request, category_slug=None):
@@ -81,3 +81,6 @@ def SignInView(request):
 
      
 
+def signOutView(request):
+    logout(request)
+    return redirect('signIn')

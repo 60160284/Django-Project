@@ -35,7 +35,7 @@ urlpatterns = [
     path('account/create',views.SignUpView, name="signUp"),
     path('account/login',views.SignInView, name="signIn"),
     path('account/reset',views.resetPass, name="resetPass"),
-    
+    path('account/logout',views.signOutView,name="signOut"),
 ]
 
 if settings.DEBUG :
