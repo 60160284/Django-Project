@@ -152,3 +152,9 @@ SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LANGUAGE_CODE = 'th'
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = 'login'

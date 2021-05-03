@@ -3,34 +3,26 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
+
 <section class="section bg">
-    <div class="container">
-        
-        <h1>
-            สร้างบัญชีใหม่
-        </h1>
+    <div class="container p-5">
+        <h2 class="font-weight-bold mt-3">สร้างบัญชีใหม่</h2>
+     <hr>
             <form method="post">
              
                 <div class="columns">
                     <div class="field">
                         <label class="label">
                             {% csrf_token %}
-                                {{form|crispy }}
+                            {{form|crispy }}
                                 
-                                <input type="submit" class="btn btn-primary" value="Register">
+                            <input type="submit" class="btn btn-primary" value="ยืนยัน">
                         </label>
                        
                     </div>
-
                 </div>
-
         </form>
-  
-
     </div>
-
-
-
 
 </section>
 {% endblock %}

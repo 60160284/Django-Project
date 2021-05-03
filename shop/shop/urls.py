@@ -24,8 +24,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index,name ="home"),
-    #path('product/', views.product),
+    
+    path('',views.index,name="home"),
     path('category/<slug:category_slug>',views.index,name="product_by_category"),
     path('typefile/<slug:typefile_slug>',views.index,name="product_by_typefile"),
     path('published/<slug:published_slug>',views.index,name="product_by_published"),
@@ -33,7 +33,8 @@ urlpatterns = [
     path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
     path('upload/',views.uploadView, name="upload  "),
     path('account/create',views.SignUpView, name="signUp"),
-    path('account/login',views.signinView, name="signIn"),
+    path('account/login',views.SignInView, name="signIn"),
+    path('account/reset',views.resetPass, name="resetPass"),
     
 ]
 

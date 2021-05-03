@@ -1,10 +1,13 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from store.models import Category, Product,Typefile,Published
 #from django.http import HttpResponse
 # Create your views here.
 from django.http import FileResponse
 from store.forms import SignUpForm 
 from django.contrib.auth.models import Group, User
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login , authenticate
+
 
 def index(request, category_slug=None):
     products = None
@@ -30,14 +33,14 @@ def productPage(request, category_slug, product_slug):
 
 
 
-def signinView(request):
-    return render(request,'signin.html')
 
 
 def uploadView(request):
     return render(request,'upload.html')
 
 
+def resetPass(request):
+    return render(request,'password_reset.html')
 
 def SignUpView(request):
     if request.method=='POST':
@@ -47,12 +50,34 @@ def SignUpView(request):
             form.save()
             #บันทึก Group Customer
             #ดึง username จากแบบฟอร์มมาใช้
-            email=form.cleaned_data.get('email')
+            username=form.cleaned_data.get('username')
             #ดึงข้อมูล user จากฐานข้อมูล
-            signUpUser=User.objects.get(email=email)
+            signUpUser=User.objects.get(username=username)
             #จัด Group
             customer_group=Group.objects.get(name="Customer")
             customer_group.user_set.add(signUpUser)
+        
+           
     else :
         form=SignUpForm()
     return render(request,"signup.html",{'form':form})
+
+
+def SignInView(request):
+    if request.method=='POST':
+        form=AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username=request.POST['username']
+            password=request.POST['password']
+            user=authenticate(username=username,password=password)
+            if user is not None :
+                login(request,user)
+                return redirect('home')
+            else :
+                return redirect('signUp')
+    else:
+        form=AuthenticationForm()
+    return render(request,'signIn.html',{'form':form})
+
+     
+
