@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'store',
     'sass_processor',
     'crispy_forms',
-   
+    
 ]
 
 MIDDLEWARE = [
@@ -139,7 +139,7 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
@@ -148,3 +148,7 @@ STATICFILES_DIRS = (
 # Sass/SCSS
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'style')
 SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r'^.+\.scss$'
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

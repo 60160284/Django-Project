@@ -1,28 +1,36 @@
-
-{% extends 'layout.html' %}
-{% load 'static %'}
+{% extends 'layout-forms.html' %}
+{% load static %}
 {% block content %}
 {% load crispy_forms_tags %}
-<section class="section bg">
- 
-    <div class="container">
-      
-            <p class="title">
-                สร้างบัญชีใหม่
-            </p>
-    
-        <div class="columns is-centered Sdy">
-            <div class="">
-                <label for="">
-                    {{form | crispy}}
-                </label>
-              
-            </div>
-        </div>
-    </div>
-        
 
+<section class="section bg">
+    <div class="container">
+        
+        <h1>
+            สร้างบัญชีใหม่
+        </h1>
+            <form method="post">
+             
+                <div class="columns">
+                    <div class="field">
+                        <label class="label">
+                            {% csrf_token %}
+                                {{form|crispy }}
+                                
+                                <input type="submit" class="btn btn-primary" value="Register">
+                        </label>
+                       
+                    </div>
+
+                </div>
+
+        </form>
   
+
+    </div>
+
+
+
 
 </section>
 {% endblock %}

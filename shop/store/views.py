@@ -4,6 +4,7 @@ from store.models import Category, Product,Typefile,Published
 # Create your views here.
 from django.http import FileResponse
 from store.forms import SignUpForm 
+from django.contrib.auth.models import Group, User
 
 def index(request, category_slug=None):
     products = None
@@ -39,7 +40,19 @@ def uploadView(request):
 
 
 def SignUpView(request):
-    form=SignUpForm()
-    return render(request,'signup.html',{'form':form})
-
-
+    if request.method=='POST':
+        form=SignUpForm(request.POST)
+        if form.is_valid():
+            #บันทึกข้อมูล User
+            form.save()
+            #บันทึก Group Customer
+            #ดึง username จากแบบฟอร์มมาใช้
+            email=form.cleaned_data.get('email')
+            #ดึงข้อมูล user จากฐานข้อมูล
+            signUpUser=User.objects.get(email=email)
+            #จัด Group
+            customer_group=Group.objects.get(name="Customer")
+            customer_group.user_set.add(signUpUser)
+    else :
+        form=SignUpForm()
+    return render(request,"signup.html",{'form':form})
