@@ -3,7 +3,7 @@ from store.models import Category, Product,Typefile,Published
 #from django.http import HttpResponse
 # Create your views here.
 from django.http import FileResponse
-
+from store.forms import SignUpForm 
 
 def index(request, category_slug=None):
     products = None
@@ -28,10 +28,18 @@ def productPage(request, category_slug, product_slug):
     return render(request,'product.html',{'product':product})
 
 
-def signupView(request):
-    return render(request,'signup.html')
 
 def signinView(request):
     return render(request,'signin.html')
+
+
+def uploadView(request):
+    return render(request,'upload.html')
+
+
+
+def SignUpView(request):
+    form=SignUpForm()
+    return render(request,'signup.html',{'form':form})
 
 

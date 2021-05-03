@@ -31,8 +31,8 @@ urlpatterns = [
     path('published/<slug:published_slug>',views.index,name="product_by_published"),
 
     path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
-    
-    path('account/create',views.signupView, name="signUp"),
+    path('upload/',views.uploadView, name="upload  "),
+    path('account/create',views.SignUpView, name="signUp"),
     path('account/login',views.signinView, name="signIn"),
     
 ]
