@@ -7,7 +7,7 @@ from store.forms import SignUpForm
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login , authenticate,logout
-
+from users import views as user_views
 
 def index(request, category_slug=None):
     products = None
@@ -86,20 +86,12 @@ def signOutView(request):
     return redirect('signIn')
 
 
-def profielView(request):
-	if request.method == "POST":
-		user_form = UserForm(request.POST, instance=request.user)
-		profile_form = ProfileForm(request.POST, instance=request.user.profile)
-		if user_form.is_valid():
-		    user_form.save()
-		    messages.success(request,('Your profile was successfully updated!'))
-		elif profile_form.is_valid():
-		    profile_form.save()
-		    messages.success(request,('Your wishlist was successfully updated!'))
-		else:
-		    messages.error(request,('Unable to complete request'))
-		return redirect ("main:userpage")
-	user_form = UserForm(instance=request.user)
-	profile_form = ProfileForm(instance=request.user.profile)
-	return render(request = request, template_name ="main/user.html", context = {"user":request.user, 
-		"user_form": user_form, "profile_form": profile_form })
+   
+
+
+def profileView(request):
+    if request.method == 'POST':
+       
+      
+       
+    return render(request, 'profile.html', args)
