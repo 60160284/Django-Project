@@ -35,34 +35,49 @@
 
         {% if request.user.is_authenticated and request.user.first_name %}
         <div class="navbar-end">
-        <div class="navbar-item">
-        <p class="text-uppercase font-weight-bold" style="color: #fff;" >
-            สวัสดี, {{ request.user.first_name }} <span><i class="fa fa-user circle"></i></span>
-        </p>
-        </div>
             <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-light" href="{% url 'signOut' %}">
-                        <strong>ออกจากระบบ</strong>
-                    </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-item">
+                        <p class="has-text-weight-bold" style="color: #fff;">
+                            สวัสดี, {{ request.user.first_name }} <span><i class="fa fa-user circle"></i></span>
+                        </p>
+                    </div>
+
+                    <div class="navbar-dropdown is-right">
+                        <div class="navbar-item">
+                            <a class="is-light" href="">
+                                <strong>บัญชีของฉัน</strong>
+                            </a>
+                        </div>
+
+                        <hr class="navbar-divider" href="">
+
+                        <div class="navbar-item">
+                        
+                                <a class="is-light" href="{% url 'signOut' %}">
+                                    <strong>ออกจากระบบ</strong>
+                                </a>
+                         
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        {% else %}
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
+            {% else %}
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
 
-                    <a class="button is-light" href="{% url 'signIn' %}">
-                        <strong>ลงชื่อเข้าใช้</strong>
-                    </a>
+                        <a class="button is-light" href="{% url 'signIn' %}">
+                            <strong>ลงชื่อเข้าใช้</strong>
+                        </a>
+                    </div>
                 </div>
+
+
+
+
             </div>
-
-
-
-
-        </div>
-        {% endif %}
+            {% endif %}
     </nav>
 </div>
