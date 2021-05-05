@@ -7,7 +7,8 @@ from store.forms import SignUpForm
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login , authenticate,logout
-from users import views as user_views
+from .forms import UserUpdateForm
+from django.contrib.auth.decorators import login_required
 
 def index(request, category_slug=None):
     products = None
@@ -56,7 +57,7 @@ def SignUpView(request):
             #จัด Group
             customer_group=Group.objects.get(name="Customer")
             customer_group.user_set.add(signUpUser)
-        
+        return redirect('signIn')
            
     else :
         form=SignUpForm()
@@ -89,9 +90,25 @@ def signOutView(request):
    
 
 
+
+@login_required
 def profileView(request):
     if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
        
-      
-       
-    return render(request, 'profile.html', args)
+        if u_form.is_valid():
+            u_form.save()
+           
+            
+            return redirect('proFile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        
+
+    context = {
+        'u_form': u_form,
+        
+    }
+
+    return render(request, 'profile.html', context)

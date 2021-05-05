@@ -1,5 +1,5 @@
 from django.contrib import admin
-from store.models import Category, Product,Typefile,Published
+from store.models import Category, Product,Typefile,Published,Profile
 # Register your models here.
 admin.site.register(Category)
 admin.site.register(Typefile)

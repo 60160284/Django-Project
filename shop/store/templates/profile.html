@@ -8,15 +8,15 @@
         <h2 class="font-weight-bold mt-3">บัญชีผู้ใช้</h2>
         <hr>
 
-        <form method="post">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row g-3">
                 <div class="col md-6">
                     <div class="col p-2">
-                        <img src="http://placehold.it/300x200&text=Small Pic" class="img-fluid" alt="Responsive image">
+                        <img src="{{ user.profile.image.url }}" class="img-fluid" alt="Profile image">
                     </div>
                     <div class="col p-2">
-                       <input type="file">
+                        <input type="file" data-buttonText="Hello" >
                     </div>
 
 
@@ -24,7 +24,16 @@
 
                 <div class="col md-6">
                     <div class="col-12 p-2">
-                        <label class="row">
+                         {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+                        <!-- <label class="row">
                             <div class="mb-3">
                                 <label class="form-label">ชื่อ</label>
                                 <input type="text" class="form-control" value="{{ request.user.first_name }}">
@@ -57,12 +66,11 @@
                             <div class="col-sm-4">
                                 <input type="button" class="btn btn-danger" value="ยกเลิก">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
         </form>
-
 
     </div>
 </section>
