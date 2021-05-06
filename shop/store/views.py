@@ -7,9 +7,32 @@ from store.forms import SignUpForm
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login , authenticate,logout
-from .forms import UserUpdateForm
+from .forms import UserUpdateForm ,UploadFileForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
+from django.core.files.storage import FileSystemStorage
+from .models import Upload
+
+def uploadView(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('workspace')
+    else:
+        form = UploadFileForm()
+
+
+    return render(request,"workspace.html",{'form':form})
+
+
+    
+
+
+def workspace(request):
+    uploads = Upload.objects.all()
+    return render(request, 'workspace.html', {'uploads': uploads})
 
 
 def index(request, category_slug=None):
@@ -49,9 +72,6 @@ def productPage(request, category_slug, product_slug):
 
 
 
-
-def uploadView(request):
-    return render(request,'upload.html')
 
 
 def resetPass(request):
@@ -101,7 +121,7 @@ def signOutView(request):
     return redirect('signIn')
 
 
-   
+
 
 
 

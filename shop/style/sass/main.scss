@@ -1,3 +1,8 @@
+$black:#000;
+$white: #ffffff;
+$color-1:#303B47;
+$bg-space:#767e87;
+
 @import "https://fonts.googleapis.com/css?family=Pridi";
 * {
   font-family: "Pridi";
@@ -22,31 +27,59 @@ section.bg {
   line-height: 24px;
 }
 
-.input.Sdy {
-  font-size: 14px;
-  border: 1px solid;
-  width: 500px;
+.input{
+  &.Sdy{
+      font-size: 14px;
+      border: 1px solid;
+      width: 500px;
+  
+  }
+
+  &.up-sdy{
+      font-size: 14px;
+      background: $bg-space;
+      border: none;
+      color: $white;
+
+
+  }
+}
+textarea{
+  &.tarea-up-sdy{
+      font-size: 14px;
+      background: $bg-space;
+      border: none;
+      color: $white;
+      border-radius: 5px;
+  }
 }
 
+
+.sub{
+    &.up-sdy{
+        font-size: 16px;
+        color: $white;
+        padding-bottom: 0.5rem;
+    }
+}
 label.naccount {
   float: right;
 }
 
-.columns{
-  &.Sdy{
-      margin: 100px;
+.columns {
+  &.Sdy {
+    margin: 100px;
   }
-  &.home-sdy{
+  &.home-sdy {
     padding: 2rem;
   }
-  &.home-filter{
+  &.home-filter {
     display: none;
   }
-  &.up-sdy{
-    height: calc(100vh - ( 3.25rem - .75rem ) );
+  &.up-sdy {
+    height: calc(100vh - (3.25rem - 0.75rem));
   }
 }
-
 
 .subtitle.Sdy {
   color: #ffffff;
@@ -194,5 +227,9 @@ body {
 i.name {
   color: #df8c10;
 }
+aside {
+  &.menu {
 
+  }
+}
 /*# sourceMappingURL=main.css.map */

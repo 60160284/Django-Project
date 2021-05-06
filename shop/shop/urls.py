@@ -37,7 +37,10 @@ urlpatterns = [
     path('account/reset',views.resetPass, name="resetPass"),
     path('account/logout',views.signOutView,name="signOut"),
     path('account/profile',views.profileView,name="proFile"),
+    path('account/workspace/',views.workspace,name="workspace"),
 
+
+    
 ]
 
 if settings.DEBUG :

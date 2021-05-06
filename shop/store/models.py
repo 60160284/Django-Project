@@ -99,3 +99,26 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+ 
+
+class Upload(models.Model):
+    name=models.CharField(max_length=255,unique=True)
+    description=models.TextField(blank=True)
+    category=models.ForeignKey(Category,on_delete=models.CASCADE)
+    typefile=models.ForeignKey(Typefile,on_delete=models.CASCADE)
+    published=models.ForeignKey(Published,on_delete=models.CASCADE)
+    
+    inputfile=models.FileField(upload_to='user/inputfile/')
+    image=models.ImageField(upload_to='user/product/')
+
+    created=models.DateTimeField(auto_now_add=True)
+    updated=models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    def delete(self, *args, **kwargs):
+       
+        self.inputfile.delete()
+        self.image.delete()
+        super().delete(*args, **kwargs)
