@@ -5,7 +5,7 @@
 
 {% include 'filter.html' %}
 <section class="section bg ">
-    
+
     <div class="container">
         <div class="columns is-multiline is-desktop">
             {% for product in products %}
@@ -16,14 +16,29 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="media-content">
-                            <a href="{{product.get_url}}"><p class="title is-6">{{product.name}}</p></a>
+                            <a href="{{product.get_url}}">
+                                <p class="title is-6">{{product.name}}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
+
         </div>
     </div>
+    <nav class="pagination is-small is-centered" role="navigation" aria-label="pagination" style="padding-top: 5px;">
+        {% if products.paginator.num_pages > 1 %}
+        <ul class="pagination-list">
+            {% for page_number in products.paginator.page_range %}
+            <li>
+                <a class="pagination-link is-current"  href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    </nav>
 </section>
 
 

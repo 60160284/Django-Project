@@ -9,10 +9,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login , authenticate,logout
 from .forms import UserUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator,EmptyPage,InvalidPage
+
 
 def index(request, category_slug=None):
     products = None
     category_page=None
+    
     if category_slug!=None:
         category_page=get_object_or_404(Category,slug=category_slug)
         products=Product.objects.all().filter(category=category_page)
@@ -20,7 +23,18 @@ def index(request, category_slug=None):
         products=Product.objects.all().filter()
 
     
-    return render(request,'index.html',{'products':products,'category':category_page})
+    paginator=Paginator(products,8)
+    try:
+        page=int(request.GET.get('page','1'))
+    except:
+        page=1
+
+    try:
+        productperPage=paginator.page(page)
+    except (EmptyPage,InvalidPage):
+        productperPage=paginator.page(paginator.num_pages)
+
+    return render(request,'index.html',{'products':productperPage,'category':category_page})
 
 
 #def product(request):

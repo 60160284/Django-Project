@@ -32,10 +32,11 @@
         </div>
 
         {% if request.user.is_authenticated and request.user.first_name %}
-        <a class="navbar-item">
+        <a class="navbar-item" href="{% url 'upload' %}">
             <span class="icon is-large" style="color: white;">
                 <i class="fa fa-upload"></i>
-                <input class="file-input" type="file"> 
+                
+                <!-- <input class="file-input" type="file">  -->
                 <!-- check for user -->
             </span>
         </a>

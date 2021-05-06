@@ -3,10 +3,10 @@
   font-family: "Pridi"; }
 
 section.bg {
-  background: #EAF4FF; }
+  background: #eaf4ff; }
 
 .button.Sdy {
-  background: #303B47;
+  background: #303b47;
   color: #ffffff; }
 
 .button.home-filter {
@@ -34,6 +34,9 @@ label.naccount {
 .columns.home-filter {
   display: none; }
 
+.columns.up-sdy {
+  height: calc(100vh - ( 3.25rem - .75rem )); }
+
 .subtitle.Sdy {
   color: #ffffff; }
 
@@ -42,7 +45,7 @@ label.naccount {
   border-radius: 50%; }
 
 .navbar.home {
-  background: #303B47; }
+  background: #303b47; }
 
 body {
   /*--header-height: 50px;*/
@@ -53,7 +56,7 @@ body {
 
 .header {
   position: sticky;
-  background: #303B47;
+  background: #303b47;
   width: 100%;
   height: var(--header-height);
   display: flex;
@@ -97,7 +100,7 @@ body {
   font-size: 18px;
   text-decoration: none;
   padding: 12px 15px;
-  background: #EAF4FF; }
+  background: #eaf4ff; }
 
 .nav--open .nav__links {
   transform: translateX(0);
@@ -133,7 +136,7 @@ body {
 
 .searchTerm {
   width: 300px;
-  border: 3px solid #303B47;
+  border: 3px solid #303b47;
   border-right: none;
   padding: 5px;
   border-radius: 3px 3px 3px 3px;
@@ -146,8 +149,8 @@ body {
 .searchButton {
   width: 40px;
   height: 36px;
-  border: 1px solid #303B47;
-  background: #303B47;
+  border: 1px solid #303b47;
+  background: #303b47;
   text-align: center;
   color: #ffffff;
   border-radius: 0 5px 5px 0;

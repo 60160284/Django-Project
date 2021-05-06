@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+{% load 'static %'}
+{% block content %}
+
+<div class="column is-fullheight up-sdy">
+<nav class="navbar is-desktop">
+    
+                <aside class="menu" style=" height: 100%; background-color: darkcyan;"  >
+                    <ul class="menu-list">
+
+                        <li>
+                            <div class="section">
+                                <p class="title up-sdy"> รายละเอียด</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="sect up-sdy">
+
+                                <p class="sub up-sdy"> ชื่อผู้จัดทำ</p>
+                                <ul>
+                                    <p class="name up-sdy">60160284</p>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="sect up-sdy">
+
+                                <div class="field">
+                                    <p class="sub up-sdy"> ชื่อไฟล์งาน</p>
+                                    <div class="control">
+                                        <input type="text" class="input up-sdy" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="sect up-sdy">
+                                <div class="field">
+                                    <p class="sub up-sdy"> คำอธิบาย</p>
+                                    <div class="control">
+                                        <textarea class="textarea tarea-up-sdy" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="sect up-sdy">
+                                <p class="sub up-sdy"> รูปแบบ</p>
+                                <div class="select is-normal is-fullwidth">
+                                    <select>
+                                        <option value="">สองมิติ</option>
+                                        <option value="">สามมิติ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="sect up-sdy">
+                                <p class="sub up-sdy"> หมวดหมู่</p>
+                                <div class="select is-normal is-fullwidth">
+                                    <select>
+                                        <option selected value=" default">เลือก</option>
+                                        <option value="sport">กีฬาและฟิตเนส</option>
+                                        <option value="architecture">สถาปัตยกรรม</option>
+                                        <option value="animal">สัตว์</option>
+                                        <option value="travel">การท่องเที่ยว</option>
+                                        <option value="people">ผู้คนและตัวละคร</option>
+                                        <option value="science">วิทยาศาสตร์</option>
+                                        <option value="nature">ธรรมชาติ</option>
+                                        <option value="arts">ศิลปะ</option>
+                                        <option value="tech">เครื่องมือและเทคโนโลยี</option>
+                                        <option value="security">ความปลอดภัย</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="sect up-sdy">
+                                <p class="sub up-sdy"> ปรเภทการเผยแพร่</p>
+                                <div class="select is-normal is-fullwidth">
+                                    <select>
+                                        <option selected value=" cc0">อนุญาตให้ใช้ โดยไม่มีเงื่อนไข (CC0)</option>
+                                        <option value="">อ้างอิงแหล่งที่มา (CC-BY)</option>
+                                        <option value="">อ้างอิงแหล่งที่มา ให้อนุญาตต่อไปแบบเดียวกัน (CC-BY-SA)</option>
+                                        <option value="">อ้างอิงแหล่งที่มา ห้ามดัดแปลง (CC-BY-ND)</option>
+                                        <option value="">อ้างอิงแหล่งที่มา ห้ามนำไปใช้เพื่อการค้า (CC-BY-NC)</option>
+                                        <option value="">อ้างอิงแหล่งที่มา ห้ามนำไปใช้เพื่อการค้า
+                                            และให้อนุญาตต่อไปแบบเดียวกัน (CC-BY-NC-SA)
+                                        </option>
+                                        <option value="">อ้างอิงแหล่งที่มา ห้ามนำไปใช้เพื่อการค้า และห้ามดัดแปลง
+                                            (CC-BY-NC-ND)</option>
+                                        <option value="">ต้องการขาย (Sell)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class="sect up-sdy">
+                                <p class="sub up-sdy"> ขนาดของไฟล์</p>
+                                <ul>
+                                    <p class="name">0.5 MB</p>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="sect has-text-centered up-sdy">
+                                <button class="button is-info is-fullwidth">อัปโหลดและเผยแพร่</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </aside>
+
+            </nav>
+</div>
+
+{% endblock %}
