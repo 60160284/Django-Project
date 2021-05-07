@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.http import FileResponse
 from django.contrib.auth.forms import User
-from PIL import Image
+
 
 # Create your models here.
 class Category(models.Model):
@@ -109,7 +109,7 @@ class Upload(models.Model):
     published=models.ForeignKey(Published,on_delete=models.CASCADE)
     
     inputfile=models.FileField(upload_to='user/inputfile/')
-    image=models.ImageField(upload_to='user/product/')
+    image=models.ImageField(upload_to='user/product/', null=True, blank=True)
 
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now=True)

@@ -48,11 +48,11 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 class UploadFileForm(forms.ModelForm):
-    name = forms.CharField(label='ชื่อไฟล์งาน',max_length=50)
-    description = forms.CharField(label='คำอธิบาย',max_length=150)
+    #name = forms.CharField(label='ชื่อไฟล์งาน',max_length=50)
+    #description = forms.CharField(label='คำอธิบาย',max_length=150)
    
     class Meta:
         model = Upload   
-        fields =['name','description','category','typefile','inputfile','image']
+        fields =['name','description','category','typefile','published','inputfile','image']
 
     
