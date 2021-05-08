@@ -1,0 +1,82 @@
+{% extends 'layout-forms.html' %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<section class="section">
+    <div class="container p-5">
+        <h2 class="font-weight-bold mt-3">บัญชีผู้ใช้</h2>
+        <hr>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col md-6">
+                    <div class="col p-2">
+                        <img src="{{ user.profile.image.url }}" class="img-fluid" alt="Profile image">
+                    </div>
+                    <div class="col p-2">
+                        <input type="file" data-buttonText="Hello">
+                    </div>
+
+
+                </div>
+
+                <div class="col md-6">
+                    <div class="col-12 p-2">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">ข้อมูลบัญชีผู้ใช้</legend>
+                            {{ u_form|crispy }}
+                            {{ p_form|crispy }}
+                        </fieldset>
+                        <div class="row">
+                            <div class="form-group  col-6">
+                                <button class="btn btn-outline-info" type="submit">แก้ไข</button>
+                            </div>
+                            <div class="form-group  col-6">
+                                <button class="btn btn-danger" >ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+        </form>
+
+    </div>
+</section>
+{% endblock %}
+<!-- <label class="row">
+                            <div class="mb-3">
+                                <label class="form-label">ชื่อ</label>
+                                <input type="text" class="form-control" value="{{ request.user.first_name }}">
+                            </div>
+
+                            <div class="mb-3 col-auto">
+                                <label class="form-label">นามสกุล</label>
+                                <input type="text" class="form-control" value="{{ request.user.last_name }}">
+                            </div>
+                        </label>
+
+
+                        <label class="row ">
+                            <div class="mb-3 ">
+                                <label class="form-label">อีเมล</label>
+                                <input type="text" class="form-control" value="{{ request.user.email }}">
+                            </div>
+
+                            <div class="mb-3 col-auto">
+                                <label class="form-label">รหัสผ่าน</label>
+                                <input type="text" class="form-control" value="{{ request.user.password }}">
+                            </div>
+                        </label>
+
+
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <input type="submit" class="btn btn-primary" value="แก้ไข">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="button" class="btn btn-danger" value="ยกเลิก">
+                            </div>
+                        </div> -->
