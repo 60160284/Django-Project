@@ -5,7 +5,7 @@ from django.contrib.auth.forms import User
 from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 from django.dispatch import receiver
-
+from PIL import Image
 
 
 # Create your models here.
@@ -126,8 +126,10 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def __str__(self):
-        return super().save(*args, **kwargs)
+    def save(self):
+        super().save()
+
+        
 
     def get_url(self):
         return reverse('proFile',args=[self.user.profile])

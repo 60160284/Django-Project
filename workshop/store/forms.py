@@ -20,7 +20,7 @@ class SignUpForm(UserCreationForm):
         label='ชื่อผู้ใช้งาน',
         max_length=100,
         required=True,
-        help_text='ชื่อผู้ใช้งานมีตัวอักษรไม่เกิน 150 ตัว สามารถใส่ตัวเลขและอักขระพิเศษ @ /. / + / - / _ เท่านั้น')
+        help_text='ชื่อผู้ใช้งานมีตัวอักษรไม่เกิน 30 ตัว สามารถใส่ตัวเลขและอักขระพิเศษ @ /. / + / - / _ เท่านั้น')
     
 
     email=forms.EmailField(
@@ -94,7 +94,11 @@ class UploadFileForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    
+    username=forms.CharField(
+        label='ชื่อผู้ใช้งาน',
+        max_length=100,
+        required=True,
+        help_text='ชื่อผู้ใช้งานมีตัวอักษรไม่เกิน 30 ตัว สามารถใส่ตัวเลขและอักขระพิเศษ @ /. / + / - / _ เท่านั้น')
 
     class Meta:
         model = User
@@ -105,6 +109,7 @@ class UserUpdateForm(forms.ModelForm):
     
 class ProfileUpdateForm(forms.ModelForm):
     profile_image=forms.ImageField(
+        
         label='เลือกรูปโปรไฟล์',
         help_text='ไฟล์ (เช่น .jpeg, .png เป็นต้น)'
     )
