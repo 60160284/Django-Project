@@ -133,4 +133,3 @@ class Profile(models.Model):
         return reverse('proFile',args=[self.user.profile])
 
     
-

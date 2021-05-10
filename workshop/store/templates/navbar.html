@@ -13,21 +13,24 @@
                     ชื่อโปรเจ็ค
                 </p>
             </a>
-            <a class="navbar-item" style="background: none;">
-                <div class="search-box">
-                    <input type="input" class="searchTerm" placeholder="ค้นหา">
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
 
+            <a class="navbar-item" style="background: none;">
+                <form action="{% url 'searchItem' %}" method="GET">
+                    <div class="search-box">
+                        <input type="input" name="title" class="searchTerm" placeholder="ค้นหา">
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                </form>
             </a>
             <a class="navbar-item">
                 <span class="icon is-large">
-                    
+
                 </span>
             </a>
-   
+
 
         </div>
 
@@ -35,7 +38,7 @@
         <a class="navbar-item" href="{% url 'upLoad' %}">
             <span class="icon is-large" style="color: white;">
                 <i class="fa fa-upload"></i>
-                
+
                 <!-- <input class="file-input" type="file">  -->
                 <!-- check for user -->
             </span>
@@ -56,40 +59,40 @@
                             </a>
                         </div>
 
-                      
+
                         <div class="navbar-item">
                             <a class="is-light" href="{% url 'workspace' %}">
                                 <strong>งานของฉัน</strong>
                             </a>
                         </div>
 
-                   
+
                         <div class="navbar-item">
-                        
-                                <a class="is-light" href="{% url 'signOut' %}">
-                                    <strong>ออกจากระบบ</strong>
-                                </a>
-                         
+
+                            <a class="is-light" href="{% url 'signOut' %}">
+                                <strong>ออกจากระบบ</strong>
+                            </a>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            {% else %}
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
+        {% else %}
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
 
-                        <a class="button is-light" href="{% url 'signIn' %}">
-                            <strong>ลงชื่อเข้าใช้</strong>
-                        </a>
-                    </div>
+                    <a class="button is-light" href="{% url 'signIn' %}">
+                        <strong>ลงชื่อเข้าใช้</strong>
+                    </a>
                 </div>
-
-
-
-
             </div>
-            {% endif %}
+
+
+
+
+        </div>
+        {% endif %}
     </nav>
 </div>
