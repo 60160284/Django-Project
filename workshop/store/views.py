@@ -69,8 +69,36 @@ def index(request, category_slug=None):
     return render(request,'index.html',{'products':productperPage,'category':category_page})
 
 
-#def product(request):
-   #return render(request,'product.html')
+def indextype(request, typefile_slug=None):
+    products = None
+    typefile_page=None
+    
+    if typefile_slug!=None:
+        typefile_page=get_object_or_404(Typefile,slug=typefile_slug)
+        products=Product.objects.all().filter(typefile=typefile_page)
+    else :
+        products=Product.objects.all().filter()
+
+
+    return render(request,'index.html',{'products':products,'typefile':typefile_page})
+
+
+
+def indexpub(request, published_slug=None):
+    products = None
+    published_page=None
+    
+    if published_slug!=None:
+        published_page=get_object_or_404(Published,slug=published_slug)
+        products=Product.objects.all().filter(published=published_page)
+    else :
+        products=Product.objects.all().filter()
+
+
+    return render(request,'index.html',{'products':products,'published':published_page})
+
+
+
 def productPage(request, category_slug, product_slug):
     try:
         product=Product.objects.get(category__slug=category_slug,slug=product_slug)
@@ -141,19 +169,19 @@ def profileView(request):
     
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        #p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile_image)
-        if u_form.is_valid() :#and p_form.is_valid():
+        p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
             u_form.save()
-            #p_form.save()
+            p_form.save()
             return redirect('proFile')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        #p_form = ProfileUpdateForm(instance=request.user.profile_image)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,
-        #'p_form': p_form
+        'p_form': p_form
     }
 
 

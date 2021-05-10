@@ -13,7 +13,23 @@
         </a>
         {% endfor %}
 
-       
+        <label class="nav__title">รูปแบบ</label>
+
+        {% for typefile in tlinks %}
+        <a class="nav__link" href="{{typefile.get_url}}">
+            {{typefile.name}}
+        </a>
+        {% endfor %}
+
+
+        <label class="nav__title">การเผยแพร่</label>
+        {% for published in plinks %}
+        <a class="nav__link" href="{{published.get_url}}">
+            {{published.name}}
+        </a>
+
+
+        {% endfor %}
     </div>
     <div class="nav__overlay"></div>
 

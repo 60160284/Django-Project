@@ -104,6 +104,10 @@ class UserUpdateForm(forms.ModelForm):
                 'email']
     
 class ProfileUpdateForm(forms.ModelForm):
+    profile_image=forms.ImageField(
+        label='เลือกรูปโปรไฟล์',
+        help_text='ไฟล์ (เช่น .jpeg, .png เป็นต้น)'
+    )
     class Meta:
         model = Profile
         fields = ['profile_image']

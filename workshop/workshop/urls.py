@@ -26,8 +26,8 @@ urlpatterns = [
     
     path('',views.index,name="home"),
     path('category/<slug:category_slug>',views.index,name="product_by_category"),
-    path('typefile/<slug:typefile_slug>',views.index,name="product_by_typefile"),
-    path('published/<slug:published_slug>',views.index,name="product_by_published"),
+    path('typefile/<slug:typefile_slug>',views.indextype,name="product_by_typefile"),
+    path('published/<slug:published_slug>',views.indexpub,name="product_by_published"),
 
     path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
     
