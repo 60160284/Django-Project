@@ -7,7 +7,7 @@ from store.forms import SignUpForm
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login , authenticate,logout
-from .forms import UserUpdateForm ,UploadFileForm,ProfileUpdateForm
+from .forms import UploadFileForm ,ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
 from django.core.files.storage import FileSystemStorage
@@ -21,9 +21,7 @@ def uploadView(request):
         form = UploadFileForm(request.POST, request.FILES)
         
         if form.is_valid():
-            form.save()
-        
-            return 'user_{0}/{1}'.format(instance.user.id, filename)
+            form.save().format(instance.user.id, filename)
             return redirect('workspace')
 
     else:
@@ -36,8 +34,8 @@ def uploadView(request):
 
 
 def workspace_list(request):
-    uploads = Upload.objects.all()
-    return render(request, 'workspace.html', {'uploads': uploads})
+    #uploads = Upload.objects.all()
+    return render(request, 'workspace.html')
 
 
 
@@ -131,26 +129,25 @@ def signOutView(request):
 
 
 
-
-
 @login_required
 def profileView(request):
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-       
-        if u_form.is_valid():
+        u_form = UserUpdateForm(request.POST,request.FILES, instance=request.user)
+        #p_form = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.profile)
+        if u_form.is_valid() :
             u_form.save()
-           
-            
+        
+            messages.success(request, f'Your account has been updated!')
             return redirect('proFile')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        
+        #p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
         'u_form': u_form,
-        
+        #'p_form': p_form
     }
+
 
     return render(request, 'profile.html', context)

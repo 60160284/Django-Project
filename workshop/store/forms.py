@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, UploadFile,Product,UploadFile
+from .models import UploadFile,Product,Category,Typefile,Published, Profiles
 from django.forms import ModelChoiceField
 
 
@@ -52,29 +52,56 @@ class SignUpForm(UserCreationForm):
         'password2')
 
 
+
+
+
+class UploadFileForm(forms.ModelForm):
+    name = forms.CharField(
+        label='ชื่อไฟล์งาน',max_length=50,
+        help_text="ใส่ชื่อไฟล์เป็นภาษาอังกฤษ")
+    
+
+    description= forms.CharField(
+        label='คำอธิบาย',
+        widget=forms.Textarea(attrs={"rows":5, "cols":20}))
+
+    category=forms.ModelChoiceField(
+        label='หมวดหมู่',
+        queryset=Category.objects.all())
+
+    typefile=forms.ModelChoiceField(
+        label='รูปแบบ',
+        queryset=Typefile.objects.all())
+
+    published=forms.ModelChoiceField(
+        label='การเผยแพร่',
+        queryset=Published.objects.all())
+
+    inputfile=forms.FileField(
+        label='เลือกไฟล์',
+        help_text='ไฟล์ (เช่น .zip, .ai, .obj, .blender เป็นต้น)'
+    )
+    image=forms.ImageField(
+        label='เลือกไฟล์หน้าปก',
+        help_text='ไฟล์ (เช่น .jpeg, .png เป็นต้น)'
+    )
+    
+
+    class Meta:
+        model = UploadFile  
+        fields =['name','description','category','typefile','published','inputfile','image']
+
+
+
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
 
     class Meta:
         model = User
-        fields = ['first_name' ,
-        'last_name' ,
-        'username', 
-        'email']
-
+        fields = ['username','first_name', 'last_name', 'email']
+    
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ['image']
-
-
-class UploadFileForm(forms.ModelForm):
-    name = forms.CharField(label='ชื่อไฟล์งาน',max_length=50)
- 
-   
-    class Meta:
-        model = UploadFile  
-        fields =['name','description','category','typefile','published','inputfile','image']
-
-    
+        model = Profiles
+        fields = ['user','image']
