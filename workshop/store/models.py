@@ -4,7 +4,9 @@ from django.http import FileResponse
 from django.contrib.auth.forms import User
 from django.contrib.auth.models import User
 from autoslug import AutoSlugField
-from PIL import Image
+from django.dispatch import receiver
+
+
 
 # Create your models here.
 class Category(models.Model):
@@ -116,13 +118,19 @@ class UploadFile(models.Model):
         super().delete(*args, **kwargs)
 
 
-class Profiles(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    profile_image = models.ImageField(default='default-avatar.png', upload_to='profile_pics/', null=True, blank=True)
 
+    
     def __str__(self):
         return f'{self.user.username} Profile'
 
+    def __str__(self):
+        return super().save(*args, **kwargs)
+
+    def get_url(self):
+        return reverse('proFile',args=[self.user.profile])
+
     
 
-       

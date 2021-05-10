@@ -1,19 +1,23 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from store.models import Category, Product,Typefile,Published
-#from django.http import HttpResponse
+
+from django.http import HttpResponseRedirect
 # Create your views here.
 from django.http import FileResponse
-from store.forms import SignUpForm
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login , authenticate,logout
-from .forms import UploadFileForm ,ProfileUpdateForm, UserUpdateForm
+
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
 from django.core.files.storage import FileSystemStorage
-from .models import Product
+from django.urls import reverse_lazy
 
 
+from .models import Product, Profile
+from .forms import UploadFileForm, ProfileUpdateForm, UserUpdateForm
+from store.forms import SignUpForm
+from store.models import Category, Product,Typefile,Published
+from django.db.models.signals import post_save
 
 def uploadView(request):
     
@@ -131,18 +135,18 @@ def signOutView(request):
 
 @login_required
 def profileView(request):
+    
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST,request.FILES, instance=request.user)
-        #p_form = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.profile)
-        if u_form.is_valid() :
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        #p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile_image)
+        if u_form.is_valid() :#and p_form.is_valid():
             u_form.save()
-        
-            messages.success(request, f'Your account has been updated!')
+            #p_form.save()
             return redirect('proFile')
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        #p_form = ProfileUpdateForm(instance=request.user.profile)
+        #p_form = ProfileUpdateForm(instance=request.user.profile_image)
 
     context = {
         'u_form': u_form,
