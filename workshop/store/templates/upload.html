@@ -26,5 +26,27 @@
         </form>
 
     </div>
+    <div class="columns is-multiline is-desktop">
+        <h1>Hello</h1>
+        
+        <div class="column is-one-quarter">
+            <figure class="image is-3by2">
+                <img src="{{user.upload.image.url}}" alt="Placeholder image">
+            </figure>
+            <div class="card">
+                <div class="card-content">
+                    <div class="media-content">
+                        <a href="{{user.upload.get_url}}">
+                            <p class="title is-6">{{user.upload.name}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
 </section>
 {% endblock %}
+
+

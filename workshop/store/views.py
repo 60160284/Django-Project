@@ -16,30 +16,36 @@ from django.urls import reverse_lazy
 from .models import Product, Profile
 from .forms import UploadFileForm, ProfileUpdateForm, UserUpdateForm
 from store.forms import SignUpForm
-from store.models import Category, Product,Typefile,Published
+from store.models import Category, Product,Typefile,Published,UploadFile
 from django.db.models.signals import post_save
 
 def uploadView(request):
-    
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
+    if request.method=='POST':
         
+        form = UploadFileForm(request.POST,request.FILES)
         if form.is_valid():
-            form.save().format(instance.user.id, filename)
-            return redirect('workspace')
+            
+            form.save()
+            return redirect('upLoad')
 
     else:
-        form = UploadFileForm()
+        form = UploadFileForm(instance=request.user.upload)
 
     return render(request, 'upload.html', {'form':form})
     
 
+
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
     
 
 
-def workspace_list(request):
-    #uploads = Upload.objects.all()
-    return render(request, 'workspace.html')
+def workspaceView(request):
+    uploads=UploadFile.objects.all().filter()
+    return render(request,'workspace.html',{'uploads':uploads})
+    
 
 
 

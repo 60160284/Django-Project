@@ -89,7 +89,7 @@ class UploadFileForm(forms.ModelForm):
 
     class Meta:
         model = UploadFile  
-        fields =['name','description','category','typefile','published','inputfile','image']
+        fields =['name','slug','description','category','typefile','published','inputfile','image']
 
 
 

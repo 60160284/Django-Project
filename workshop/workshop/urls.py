@@ -34,7 +34,7 @@ urlpatterns = [
     
    
     path('upload/',views.uploadView, name="upLoad"),
-    path('upload/workspace',views.workspace_list,name="workspace"),
+    path('upload/workspace',views.workspaceView,name="workspace"),
 
 
     path('account/create',views.SignUpView, name="signUp"),
