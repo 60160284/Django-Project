@@ -90,7 +90,7 @@ class Product(models.Model):
 
 
 class UploadFile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name=models.CharField(max_length=255,unique=True)
     slug=models.SlugField(max_length=255,unique=True, default="up_")
     #slug = AutoSlugField(populate_from="up_"+'name', editable=True)
@@ -101,19 +101,25 @@ class UploadFile(models.Model):
     typefile=models.ForeignKey(Typefile,on_delete=models.CASCADE)
     published=models.ForeignKey(Published,on_delete=models.CASCADE)
     
-    inputfile=models.FileField(upload_to='user/inputfile/')
+    inputfile=models.FileField(upload_to='user/inputfile/', null=True, blank=True)
     image=models.ImageField(upload_to='user/product/', null=True, blank=True)
     
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now=True)
    
     
+    def __str__(self):
+        return f'{self.user.username} UploadFile'
+
     def save(self):
         super().save()
+
         
 
     def get_url(self):
-        return reverse('upLoad',args=[self.user.upload])
+        return reverse('upLoad',args=[self.user.profile])
+
+    
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

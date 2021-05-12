@@ -1,4 +1,8 @@
-from store.models import Category,Typefile,Published
+from store.models import Category,Typefile,Published , UploadFile
+
+def up_links(request):
+    ulinks=UploadFile.objects.all()
+    return dict(ulinks=ulinks)
 
 
 def menu_links(request):

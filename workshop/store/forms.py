@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import UploadFile,Product,Category,Typefile,Published,Profile
+from .models import UploadFile,Product,Category,Typefile,Published,Profile,UploadFile
 from django.forms import ModelChoiceField
 
 
@@ -53,7 +53,10 @@ class SignUpForm(UserCreationForm):
 
 
 
-
+class UserUpload(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
 
 class UploadFileForm(forms.ModelForm):
     name = forms.CharField(
@@ -86,10 +89,12 @@ class UploadFileForm(forms.ModelForm):
         help_text='ไฟล์ (เช่น .jpeg, .png เป็นต้น)'
     )
     
+    
 
     class Meta:
         model = UploadFile  
-        fields =['name','slug','description','category','typefile','published','inputfile','image']
+        fields =['name','description','category','typefile','published','inputfile','image']
+
 
 
 

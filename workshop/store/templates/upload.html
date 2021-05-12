@@ -19,7 +19,8 @@
         <form method="post" enctype="multipart/form-data">
 
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ user_form |crispy }}
+            {{ upload_form |crispy }}
             <input type="submit" class="btn btn-primary" value="อัปโหลดและเผยแพร่">
 
 
@@ -31,12 +32,12 @@
         
         <div class="column is-one-quarter">
             <figure class="image is-3by2">
-                <img src="{{user.upload.image.url}}" alt="Placeholder image">
+                <img src="{{user.uploadfile.image.url}}" alt="Placeholder image">
             </figure>
             <div class="card">
                 <div class="card-content">
                     <div class="media-content">
-                        <a href="{{user.upload.get_url}}">
+                        <a href="{{user.uploadfile.get_url}}">
                             <p class="title is-6">{{user.upload.name}}</p>
                         </a>
                     </div>
