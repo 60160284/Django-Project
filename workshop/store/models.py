@@ -113,7 +113,7 @@ class UploadFile(models.Model):
     def __str__(self):
         return self.name
 
- 
+
 
     def delete(self, *args, **kwargs):
        
@@ -121,7 +121,8 @@ class UploadFile(models.Model):
         self.image.delete()
         super().delete()
 
-    
+    def get_url(self):
+        return reverse('uploadProductDetail',args=[self.category.slug,self.slug])
 
     
 

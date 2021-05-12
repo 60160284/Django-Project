@@ -8,7 +8,7 @@
       <div class="columns">
           <div class="column is-8 is-offset-2 ">
               <figure class="image is-2by1 ">
-                  <img src="{{product.image.url}}" alt="">
+                <img src="{{uploads.image.url}}" alt="Placeholder image">
               </figure>
           </div>
 
@@ -22,14 +22,14 @@
           <div class="navbar-menu">
               <div class="navbar-start">
                 <a class="navbar-item">
-                  <p class="title">{{product.name}}</p>
+                  <p class="title">{{uploads.name}}</p>
                 </a>
               </div>
           
               <div class="navbar-end">
                 <div class="navbar-item">
                   <div class="buttons">
-                    <a class="button is-info is-inverted" href="{{product.inputfile.url}}">
+                    <a class="button is-info is-inverted" href="{{uploads.inputfile.url}}">
         
                       <span class="icon">
                         <i class="fa fa-download item-down"></i>
@@ -42,16 +42,16 @@
               </div>
           </div>
           <div class="content is-medium item-sdy" style="padding-top: 2rem;">
-              <p>{{product.description}} </p>
+              <p>{{uploads.description}} </p>
 
               
           </div>
 
           <div class="columns">
-              <div class="column">มีนาคม 27, 2564</div>
-              <div class="column">{{product.category.name}}</div>
-              <div class="column">{{product.typefile.name}}</div>
-              <div class="column">{{product.published.name}}</div>
+              <div class="column">{{uploads.created}}</div>
+              <div class="column">{{uploads.category.name}}</div>
+              <div class="column">{{uploads.typefile.name}}</div>
+              <div class="column">{{uploads.published.name}}</div>
           </div>
       </div>
 

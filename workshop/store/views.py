@@ -118,6 +118,12 @@ def productPage(request, category_slug, product_slug):
 
 
 
+def uploadProductPage(request, category_slug, uploadfile_slug):
+    try:
+        uploads=UploadFile.objects.get(category__slug=category_slug,slug=uploadfile_slug)
+    except Exception as e :
+        raise e
+    return render(request,'upload-product.html',{'uploads':uploads})
 
 
 
