@@ -96,7 +96,7 @@ class UploadFile(models.Model):
     name=models.CharField(max_length=255,unique=True)
     #slug=models.SlugField(max_length=255,unique=True, default="up_")
     
-    slug = AutoSlugField(populate_from='title',editable=True, unique_with='user')
+    slug = AutoSlugField(populate_from='name',editable=True, unique_with='user')
 
     description=models.TextField(blank=True)
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
