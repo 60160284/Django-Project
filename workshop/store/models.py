@@ -94,7 +94,7 @@ class UploadFile(models.Model):
     #user = models.OneToOneField(User, on_delete=models.CASCADE)
     user = models.ForeignKey(User,null = True, on_delete = models.SET_NULL)
     name=models.CharField(max_length=255,unique=True)
-    #slug=models.SlugField(max_length=255,unique=True, default="up_")
+    
     
     slug = AutoSlugField(populate_from='name',editable=True, unique_with='user')
 

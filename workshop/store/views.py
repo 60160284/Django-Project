@@ -28,6 +28,7 @@ def uploadView(request):
         if form.is_valid():
             
             form.save()
+            messages.success(request, 'อัปโหลดสำเร็จ')
             return redirect('workspace')
 
     else:
@@ -46,7 +47,7 @@ def user_directory_path(instance, filename):
 
 
 def workspaceView(request):
-    uploads=UploadFile.objects.all().filter()
+    uploads=UploadFile.objects.all().filter(user=request.user)
     return render(request,'workspace.html',{'uploads':uploads})
     
 
