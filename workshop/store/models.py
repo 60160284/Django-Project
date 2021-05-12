@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 from django.dispatch import receiver
 from PIL import Image
+from django.template.defaultfilters import slugify
 
 
 # Create your models here.
@@ -29,9 +30,9 @@ class Typefile(models.Model):
     name=models.CharField(max_length=255,unique=True)
     slug=models.SlugField(max_length=255,unique=True)
       
+    
     def __str__(self):
         return self.name
-
     class Meta :
         ordering=('name',)
         verbose_name ='รูปแบบ'
@@ -90,11 +91,12 @@ class Product(models.Model):
 
 
 class UploadFile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,null = True, on_delete = models.SET_NULL)
     name=models.CharField(max_length=255,unique=True)
-    slug=models.SlugField(max_length=255,unique=True, default="up_")
-    #slug = AutoSlugField(populate_from="up_"+'name', editable=True)
-
+    #slug=models.SlugField(max_length=255,unique=True, default="up_")
+    
+    slug = AutoSlugField(populate_from='title',editable=True, unique_with='user')
 
     description=models.TextField(blank=True)
     category=models.ForeignKey(Category,on_delete=models.CASCADE)
@@ -109,15 +111,17 @@ class UploadFile(models.Model):
    
     
     def __str__(self):
-        return f'{self.user.username} UploadFile'
+        return self.name
 
-    def save(self):
-        super().save()
+ 
 
-        
+    def delete(self, *args, **kwargs):
+       
+        self.inputfile.delete()
+        self.image.delete()
+        super().delete()
 
-    def get_url(self):
-        return reverse('upLoad',args=[self.user.profile])
+    
 
     
 

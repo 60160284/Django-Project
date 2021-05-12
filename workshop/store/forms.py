@@ -53,12 +53,10 @@ class SignUpForm(UserCreationForm):
 
 
 
-class UserUpload(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username']
+
 
 class UploadFileForm(forms.ModelForm):
+    
     name = forms.CharField(
         label='ชื่อไฟล์งาน',max_length=50,
         help_text="ใส่ชื่อไฟล์เป็นภาษาอังกฤษ")
@@ -89,13 +87,10 @@ class UploadFileForm(forms.ModelForm):
         help_text='ไฟล์ (เช่น .jpeg, .png เป็นต้น)'
     )
     
-    
-
+   
     class Meta:
         model = UploadFile  
-        fields =['name','description','category','typefile','published','inputfile','image']
-
-
+        fields =['user','name','slug','description','category','typefile','published','inputfile','image']
 
 
 class UserUpdateForm(forms.ModelForm):

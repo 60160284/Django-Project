@@ -14,33 +14,27 @@ from django.urls import reverse_lazy
 
 
 from .models import Product, Profile, UploadFile
-from .forms import UploadFileForm, ProfileUpdateForm, UserUpdateForm, UserUpload
+from .forms import UploadFileForm, ProfileUpdateForm, UserUpdateForm
 from store.forms import SignUpForm
 from store.models import Category, Product,Typefile,Published
 from django.db.models.signals import post_save
 
 
-
+@login_required
 def uploadView(request):
+    
     if request.method == 'POST':
-        user_form = UserUpload(request.POST, instance=request.user)
-        upload_form = UploadFileForm(request.POST,request.FILES, instance=request.user.upload)
-        
-        if user_form.is_valid() and upload_form.is_valid():
-            user_form.save()
-            upload_form.save()
-            return redirect('upLoad')
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('workspace')
 
     else:
-        user_form = UserUpload(instance=request.user)
-        upload_form = UploadFileForm()
+        form = UploadFileForm()
 
-    context = {
-        'user_form': user_form,'upload_form': upload_form
-    }
+    return render(request, 'upload.html', {'form':form})
 
-    return render(request, 'upload.html', context)
-
+    
 
 
 

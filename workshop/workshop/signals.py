@@ -15,7 +15,7 @@ def create_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User) 
 def save_profile(sender, instance, **kwargs):
         instance.profile.save()
-
+        
 
         
 @receiver(post_save, sender=User) 
@@ -24,3 +24,6 @@ def create_upload(sender, instance, created, **kwargs):
         UploadFile.objects.create(user=instance)
    
 
+@receiver(post_save, sender=User) 
+def save_upload(sender, instance, **kwargs):
+        instance.uploadfile.save()
