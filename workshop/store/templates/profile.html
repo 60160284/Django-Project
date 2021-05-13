@@ -13,17 +13,19 @@
             <div class="row g-3">
 
 
-                
+
                 <div class="col md-6">
                     <div class="col-12 p-2">
 
                         <fieldset class="form-group">
                             <legend class="border-bottom mb-4">โปรไฟล์ของฉัน</legend>
-                        
+
                             <div class="col p-2">
+                               
                                 <img src="{{ user.profile.profile_image.url }}" class="img-fluid" alt="Profile image">
+                              
                             </div>
-                          
+
                         </fieldset>
                         <div class="row">
                             {{ p_form |crispy }}
@@ -39,8 +41,8 @@
                             <legend class="border-bottom mb-4">ข้อมูลบัญชีผู้ใช้</legend>
                             {% csrf_token %}
                             {{ u_form |crispy }}
-                          
-                            
+
+
                         </fieldset>
                         <div class="row">
                             <div class="form-group  col-6">

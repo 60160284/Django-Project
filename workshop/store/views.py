@@ -19,22 +19,26 @@ from store.forms import SignUpForm
 from store.models import Category, Product,Typefile,Published
 from django.db.models.signals import post_save
 
+def paymentView(request):
+    return
+
 
 @login_required
 def uploadView(request):
     
-    if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
+        if request.method == 'POST':
+            form = UploadFileForm(request.POST, request.FILES)
             
-            form.save()
-            messages.success(request, 'อัปโหลดสำเร็จ')
-            return redirect('workspace')
+            if form.is_valid():
+                
+                form.save()
+                
+                return redirect('workspace')
 
-    else:
-        form = UploadFileForm()
+        else:
+            form = UploadFileForm()
 
-    return render(request, 'upload.html', {'form':form})
+        return render(request, 'upload.html', {'form':form})
 
     
 
@@ -144,6 +148,7 @@ def SignUpView(request):
             #จัด Group
             customer_group=Group.objects.get(name="Customer")
             customer_group.user_set.add(signUpUser)
+
         return redirect('signIn')
            
     else :
@@ -193,7 +198,9 @@ def profileView(request):
             return redirect('proFile')
 
     else:
+       
         u_form = UserUpdateForm(instance=request.user)
+        
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {

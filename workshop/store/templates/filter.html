@@ -8,14 +8,14 @@
         <span>ตัวกรอง</span>
     </button>
 
-    <div class="select" >
+    <div class="select">
         <select>
             <option value="" selected>ผลงานทั้งหมด</option>
             <option value="">ตามวันที่เผยแพร่</option>
         </select>
     </div>
 
-    
+
 </div>
 
 
@@ -74,12 +74,22 @@
         <div class="column">
             <span>ประเภทของโมเดล</span>
             {% for typefile in tlinks %}
-            
+
             <div class="column checkbox">
                 <input type="checkbox" name="" value="{{typefile.get_url}}" />
                 <label>{{typefile.name}}</label>
             </div>
             {% endfor %}
+
+
+            <!-- {% for category in links %}
+            <div class="column ">
+                <a class="checkbox" href="{{category.get_url}}">
+                     <label>{{category.name}}</label>
+                </a>  
+               
+            </div>
+            {% endfor %} -->
         </div>
 
 

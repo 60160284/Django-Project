@@ -1,3 +1,4 @@
+from typing import Sized
 from django.db import models
 from django.urls import reverse
 from django.http import FileResponse
@@ -6,7 +7,7 @@ from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 from django.dispatch import receiver
 from PIL import Image
-from django.template.defaultfilters import slugify
+from django.template.defaultfilters import default, slugify
 
 
 # Create your models here.
@@ -128,7 +129,7 @@ class UploadFile(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(default='default-avatar.png', upload_to='profile_pics/', null=True, blank=True)
+    profile_image = models.ImageField(upload_to='profile_pics/', null=False, blank=True, )
 
     
     def __str__(self):
@@ -137,9 +138,12 @@ class Profile(models.Model):
     def save(self):
         super().save()
 
+   
+  
+
         
 
     def get_url(self):
         return reverse('proFile',args=[self.user.profile])
 
-    
+ 

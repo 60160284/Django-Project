@@ -56,7 +56,7 @@ class SignUpForm(UserCreationForm):
 
 
 class UploadFileForm(forms.ModelForm):
- 
+    
 
  
 
@@ -89,13 +89,19 @@ class UploadFileForm(forms.ModelForm):
         label='เลือกไฟล์หน้าปก',
         help_text='ไฟล์ (เช่น .jpeg, .png เป็นต้น)'
     )
+    user=forms.ModelChoiceField(
+        label= 'ผู้ใช้งาน',
+        queryset=User.objects.all()
+    )
     
+ 
+
    
     class Meta:
         model = UploadFile  
         fields =['name','description','category','typefile','published','inputfile','image','user']
 
-
+  
 class UserUpdateForm(forms.ModelForm):
     username=forms.CharField(
         label='ชื่อผู้ใช้งาน',
