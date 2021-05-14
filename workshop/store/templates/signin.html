@@ -15,17 +15,19 @@
                     <label class="label">
                         {% csrf_token %}
                         {{form | crispy}}
-                        <a href="{% url 'resetPass' %}"><p class="">ลืมรหัสผ่าน</p></a>
+                        <a href="{% url 'resetPass' %}">
+                            <p class="">ลืมรหัสผ่าน</p>
+                        </a>
                         <input type="submit" class="btn btn-primary" value="ยืนยัน">
                     </label>
-                   
+
                 </div>
             </div>
             <div class="field">
                 <a href="{% url 'signUp' %}"><label class="naccount">สร้างบัญชีใหม่</label></a>
             </div>
 
-    </form>
+        </form>
 
 
     </div>

@@ -13,14 +13,14 @@ from django.core.files.storage import FileSystemStorage
 from django.urls import reverse_lazy
 
 
-from .models import Product, Profile, UploadFile
-from .forms import UploadFileForm, ProfileUpdateForm, UserUpdateForm
-from store.forms import SignUpForm
-from store.models import Category, Product,Typefile,Published
+from .models import Product, Profile, UploadFile , Category,Typefile,Published
+from .forms import UploadFileForm, ProfileUpdateForm, UserUpdateForm,  SignUpForm
+
+
 from django.db.models.signals import post_save
 
 def paymentView(request):
-    return
+    return render(request, 'payment.html')
 
 
 @login_required

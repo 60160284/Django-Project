@@ -129,7 +129,7 @@ class UploadFile(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to='profile_pics/', null=False, blank=True, )
+    profile_image = models.ImageField(upload_to='profile_pics/', null=False, blank=True )
 
     
     def __str__(self):

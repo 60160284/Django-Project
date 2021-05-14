@@ -5,55 +5,80 @@
   <div class="hero-body">
 
 
-      <div class="columns">
-          <div class="column is-8 is-offset-2 ">
-              <figure class="image is-2by1 ">
-                  <img src="{{product.image.url}}" alt="">
-              </figure>
-          </div>
-
+    <div class="columns">
+      <div class="column is-8 is-offset-2 ">
+        <figure class="image is-2by1 ">
+          <img src="{{product.image.url}}" alt="">
+        </figure>
       </div>
+
     </div>
+  </div>
 </section>
 
 <section class="section bg">
   <div class="columns">
-      <div class="column is-8 is-offset-2">
-          <div class="navbar-menu">
-              <div class="navbar-start">
-                <a class="navbar-item">
-                  <p class="title">{{product.name}}</p>
-                </a>
-              </div>
-          
-              <div class="navbar-end">
-                <div class="navbar-item">
-                  <div class="buttons">
-                    <a class="button is-info is-inverted" href="{{product.inputfile.url}}">
-        
-                      <span class="icon">
-                        <i class="fa fa-download item-down"></i>
-                      </span>
-                      <strong>ดาวน์โหลด</strong>
-                    </a>
-                    
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div class="content is-medium item-sdy" style="padding-top: 2rem;">
-              <p>{{product.description}} </p>
+    <div class="column is-8 is-offset-2">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          {% if product.price > 0 %}
+          <a class="navbar-item">
+            <p class="title">{{product.name}} <i class="fa fa-usd name" aria-hidden="true"></i></p>
+          </a>
+          {% else %}
+          <a class="navbar-item">
+            <p class="title">{{product.name}} </p>
+          </a>
 
-              
+          {% endif %}
+        </div>
+
+
+        <div class="navbar-end">
+          {% if product.price > 0 %}
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-warning " href="{% url 'paymentOrder' %}">
+                <span class="icon">
+                  <i class="fa fa-download item-down"></i>
+                </span>
+                <strong>ดาวน์โหลด</strong>
+              </a>
+
+            </div>
           </div>
 
-          <div class="columns">
-              <div class="column">{{product.created}}</div>
-              <div class="column">{{product.category.name}}</div>
-              <div class="column">{{product.typefile.name}}</div>
-              <div class="column">{{product.published.name}}</div>
+
+          {% else %}
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-info is-inverted" href="{{product.inputfile.url}}">
+                <span class="icon">
+                  <i class="fa fa-download item-down"></i>
+                </span>
+                <strong>ดาวน์โหลด</strong>
+              </a>
+
+            </div>
           </div>
+          {% endif %}
+
+        </div>
+
       </div>
+      <div class="content is-medium item-sdy" style="padding-top: 2rem;">
+        <p>{{product.description}} </p>
+
+
+      </div>
+
+      <div class="columns">
+        <div class="column">{{product.created}}</div>
+        <div class="column">{{product.category.name}}</div>
+        <div class="column">{{product.typefile.name}}</div>
+        <div class="column">{{product.published.name}}</div>
+      </div>
+    </div>
 
 </section>
 

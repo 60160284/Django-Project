@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% sass_src 'sass/main.scss' %}" type="text/css">
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
     <title>Document</title>
 </head>
 
@@ -32,7 +34,11 @@
             </a>
        
         </div>
-        
+        <div class="navbar-item">
+            <p class="has-text-weight-bold" style="color: #fff;">
+                สวัสดี, {{ request.user.first_name }} <span><i class="fa fa-user circle"></i></span>
+            </p>
+        </div>
     </nav>
 
     {% block content %}
