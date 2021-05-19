@@ -14,15 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+
 from django.contrib import admin
 from django.urls import path
 
 
-from store import views
+
 from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation.trans_real import DjangoTranslation
-
+from store import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,12 +33,15 @@ urlpatterns = [
     path('typefile/<slug:typefile_slug>',views.indextype,name="product_by_typefile"),
     path('published/<slug:published_slug>',views.indexpub,name="product_by_published"),
 
-    path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
+    #path('product/<slug:category_slug>/<slug:product_slug>',views.productPage,name='productDetail'),
     
     path('payment',views.paymentView, name="paymentOrder"),
-   
+
+    #path('upload/workspace/edit', views.editfile, name='editFile'),
+    #path('upload/workspace/delete', views.deletefile, name='deleteFile'),
     path('upload/',views.uploadView, name="upLoad"),
-    path('upload/workspace',views.workspaceView,name="workspace"),
+    path('upload/workspace',views.workspaceView,name='workspace'),
+
     path('upload/<slug:category_slug>/<slug:uploadfile_slug>',views.uploadProductPage,name="uploadProductDetail"),
 
     path('account/create',views.SignUpView, name="signUp"),

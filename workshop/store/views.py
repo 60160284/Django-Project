@@ -1,26 +1,27 @@
 from django.shortcuts import render,get_object_or_404,redirect
 
-from django.http import HttpResponseRedirect
-# Create your views here.
-from django.http import FileResponse
+
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login , authenticate,logout
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
-from django.core.files.storage import FileSystemStorage
+
 from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-
-from .models import Product, Profile, UploadFile , Category,Typefile,Published
+from .models import Profile, UploadFile , Category,Typefile,Published
 from .forms import UploadFileForm, ProfileUpdateForm, UserUpdateForm,  SignUpForm
-
+from .mixins import UploadOwnerMixin
 
 from django.db.models.signals import post_save
 
 def paymentView(request):
     return render(request, 'payment.html')
+
+
 
 
 @login_required
@@ -30,15 +31,16 @@ def uploadView(request):
             form = UploadFileForm(request.POST, request.FILES)
             
             if form.is_valid():
-                
+               
+                form.save(commit=False)
+                form.user =request.user
                 form.save()
-                
                 return redirect('workspace')
 
         else:
             form = UploadFileForm()
-
-        return render(request, 'upload.html', {'form':form})
+            
+        return render(request, 'uploads/upload_form.html', {'form':form})
 
     
 
@@ -55,70 +57,67 @@ def workspaceView(request):
     return render(request,'workspace.html',{'uploads':uploads})
     
 
-
-
-
 def index(request, category_slug=None):
-    products = None
+    uploads = None
     category_page=None
     
     if category_slug!=None:
         category_page=get_object_or_404(Category,slug=category_slug)
-        products=Product.objects.all().filter(category=category_page)
+        uploads=UploadFile.objects.all().filter(category=category_page)
     else :
-        products=Product.objects.all().filter()
+        uploads=UploadFile.objects.all().filter()
 
     
-    paginator=Paginator(products,8)
+    paginator=Paginator(uploads,8)
     try:
         page=int(request.GET.get('page','1'))
     except:
         page=1
 
     try:
-        productperPage=paginator.page(page)
+        uploadperPage=paginator.page(page)
     except (EmptyPage,InvalidPage):
-        productperPage=paginator.page(paginator.num_pages)
+        uploadperPage=paginator.page(paginator.num_pages)
 
-    return render(request,'index.html',{'products':productperPage,'category':category_page})
+    return render(request,'index.html',{'uploads':uploadperPage,'category':category_page})
+
+
+
+
+
+
 
 
 def indextype(request, typefile_slug=None):
-    products = None
+    uploads = None
     typefile_page=None
     
     if typefile_slug!=None:
         typefile_page=get_object_or_404(Typefile,slug=typefile_slug)
-        products=Product.objects.all().filter(typefile=typefile_page)
+        uploads=UploadFile.objects.all().filter(typefile=typefile_page)
     else :
-        products=Product.objects.all().filter()
+        uploads=UploadFile.objects.all().filter()
 
 
-    return render(request,'index.html',{'products':products,'typefile':typefile_page})
+    return render(request,'index.html',{'uploads':uploads,'typefile':typefile_page})
 
 
 
 def indexpub(request, published_slug=None):
-    products = None
+    uploads = None
     published_page=None
     
     if published_slug!=None:
         published_page=get_object_or_404(Published,slug=published_slug)
-        products=Product.objects.all().filter(published=published_page)
+        uploads=UploadFile.objects.all().filter(published=published_page)
     else :
-        products=Product.objects.all().filter()
+        uploads=UploadFile.objects.all().filter()
 
 
-    return render(request,'index.html',{'products':products,'published':published_page})
+    return render(request,'index.html',{'uploads':uploads,'published':published_page})
 
 
 
-def productPage(request, category_slug, product_slug):
-    try:
-        product=Product.objects.get(category__slug=category_slug,slug=product_slug)
-    except Exception as e :
-        raise e
-    return render(request,'product.html',{'product':product})
 
 
 
@@ -127,7 +126,7 @@ def uploadProductPage(request, category_slug, uploadfile_slug):
         uploads=UploadFile.objects.get(category__slug=category_slug,slug=uploadfile_slug)
     except Exception as e :
         raise e
-    return render(request,'upload-product.html',{'uploads':uploads})
+    return render(request,'uploads/upload_detail.html',{'uploads':uploads})
 
 
 
@@ -149,10 +148,16 @@ def SignUpView(request):
             customer_group=Group.objects.get(name="Customer")
             customer_group.user_set.add(signUpUser)
 
-        return redirect('signIn')
-           
+            return redirect('signIn')
+        else:
+            print(form.errors)
+            
+            messages.error(request,'ขออภัย, มีบางอย่าผิดพลาด โปรดกรอกข้อมูลอีกครั้ง')
+            return redirect('signUp')
     else :
         form=SignUpForm()
+    
+
     return render(request,"signup.html",{'form':form})
 
 
@@ -181,9 +186,9 @@ def signOutView(request):
 
 
 def search(request):
-    products=Product.objects.filter(name__contains=request.GET['title'])
+    uploads=UploadFile.objects.filter(name__contains=request.GET['title'])
     
-    return render(request,'index.html',{'products':products})
+    return render(request,'index.html',{'uploads':uploads})
 
 @login_required
 def profileView(request):
@@ -210,3 +215,39 @@ def profileView(request):
 
 
     return render(request, 'profile.html', context)
+
+
+
+
+class PostListView(ListView):
+	model = UploadFile
+
+
+
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+	model = UploadFile
+	form_class = UploadFileForm
+
+	def form_valid(self, form, *args, **kwargs):
+		# print(form)
+		# print(self)
+		# print(args)
+		# print(kwargs)
+		upload = form.save(commit=False)
+
+		# print(self.request.user)
+		# print(post.title, post.message)
+
+		upload.user = self.request.user
+		upload.save()
+		return super().form_valid(form)
+
+class PostUpdateView(UploadOwnerMixin, UpdateView):
+	model = UploadFile
+	form_class = UploadFileForm
+
+class PostDeleteView(UploadOwnerMixin, DeleteView):
+	model = UploadFile
+	success_url = reverse_lazy('')

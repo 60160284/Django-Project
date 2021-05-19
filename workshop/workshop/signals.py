@@ -10,6 +10,7 @@ from store.models import UploadFile
 @receiver(post_save, sender=User) 
 def create_profile(sender, instance, created, **kwargs):
     if created:
+        Profile ='profile_pics/default-avatar.png'
         Profile.objects.create(user=instance)
    
 @receiver(post_save, sender=User) 
